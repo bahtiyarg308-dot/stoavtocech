@@ -153,19 +153,20 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
 .lift-scene svg{width:100%;height:100%;max-height:100%}
 .post{fill:#1b1b1d;stroke:#3b3b3f}
 .floor{stroke:#3b3b3f;stroke-width:2}
-.car-body{fill:var(--dark2);stroke:#fff;stroke-width:2;stroke-linejoin:round}
-.car-glass{fill:#0c0c0d;stroke:#8c8c92;stroke-width:1.2}
-.car-in{fill:none;stroke:#6a6a70;stroke-width:1.4;stroke-dasharray:4 3}
-.wheel{fill:#0c0c0d;stroke:#fff;stroke-width:3}
-.hub{fill:#1b1b1d;stroke:#8c8c92;stroke-width:1.5}
 .spot{cursor:pointer;outline:none}
-.spot .hit{fill:transparent}
-.spot .ring{fill:none;stroke:var(--y);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:ping 2.2s ease-out infinite}
-.spot .dot{fill:var(--y);stroke:var(--dark);stroke-width:2;transition:fill .15s}
-.spot text{fill:var(--dark);font:700 10px var(--mono);text-anchor:middle;dominant-baseline:central;pointer-events:none}
-.spot.on .dot{fill:#fff}
-.spot:focus-visible .dot{stroke:#fff;stroke-width:3}
-@keyframes ping{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.9);opacity:0}}
+.tile .bg{fill:var(--dark2);stroke:#44444a;stroke-width:1.5;transition:fill .2s,stroke .2s}
+.tile:hover .bg{stroke:var(--y)}
+.tile .ic{fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.tile .lbl{fill:#fff;font:600 12.5px var(--head);letter-spacing:.09em;text-anchor:middle;pointer-events:none;transition:fill .2s}
+.tile .pr{fill:#9a9a93;font:500 8.5px var(--mono);text-anchor:middle;pointer-events:none;transition:fill .2s}
+.tile .nb{fill:var(--y);transition:fill .2s}
+.tile .nt{fill:var(--dark);font:700 8.5px var(--mono);text-anchor:middle;dominant-baseline:central;pointer-events:none;transition:fill .2s}
+.tile.on .bg{fill:var(--y);stroke:var(--y)}
+.tile.on .ic{stroke:var(--dark)}
+.tile.on .lbl,.tile.on .pr{fill:var(--dark)}
+.tile.on .nb{fill:var(--dark)}
+.tile.on .nt{fill:var(--y)}
+.tile:focus-visible .bg{stroke:#fff;stroke-width:3}
 .lift-card{min-height:184px;margin-top:8px;padding:18px;background:#fff;color:var(--ink);border-radius:var(--r)}
 .lift-card .eyebrow{color:var(--mute);margin-bottom:8px}
 .lift-card h3{font-size:1.6rem;margin:0 0 8px}
@@ -370,40 +371,61 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
     </div>
     <div class="wrap lift-layout">
       <div class="lift-scene">
-        <svg viewBox="0 -44 400 312" role="group" aria-label="Автомобиль на подъёмнике с точками осмотра">
+        <svg viewBox="0 -80 400 348" role="group" aria-label="Шесть узлов автомобиля на подъёмнике: нажмите на узел, чтобы увидеть цены">
           <path class="floor" d="M0 232H400"/>
-          <rect class="post" x="14" y="-36" width="14" height="268" rx="2"/>
-          <rect class="post" x="372" y="-36" width="14" height="268" rx="2"/>
+          <rect class="post" x="14" y="-72" width="14" height="304" rx="2"/>
+          <rect class="post" x="372" y="-72" width="14" height="304" rx="2"/>
           <g id="liftRig">
             <rect x="10" y="224" width="380" height="8" rx="2" fill="#fff"/>
             <rect x="10" y="224" width="26" height="8" rx="2" fill="#ffee05"/><rect x="364" y="224" width="26" height="8" rx="2" fill="#ffee05"/>
-            <!-- универсальный силуэт автомобиля -->
-            <path class="car-body" d="M56 198 L52 170 Q52 150 70 146 L110 140 Q135 104 175 100 L235 100 Q262 102 288 138 L330 148 Q352 152 354 172 L354 192 Q354 198 346 198 L322 198 A32 32 0 0 0 258 198 L147 198 A32 32 0 0 0 83 198 Z"/>
-            <path class="car-glass" d="M122 140 Q142 110 176 108 L200 108 L200 140 Z"/>
-            <path class="car-glass" d="M208 108 L234 108 Q254 110 276 140 L208 140 Z"/>
-            <path class="car-in" d="M204 142V196"/>
-            <rect class="car-in" x="300" y="150" width="40" height="30" rx="3"/>
-            <rect class="car-in" x="268" y="158" width="28" height="20" rx="3"/>
-            <path class="car-in" d="M300 190 H150 M130 190 H98"/>
-            <rect class="car-in" x="62" y="182" width="36" height="14" rx="7"/>
-            <rect class="car-in" x="238" y="122" width="16" height="11" rx="2"/>
-            <rect x="346" y="160" width="8" height="10" rx="2" fill="#ffee05"/>
-            <rect x="52" y="158" width="6" height="12" rx="2" fill="#d3402b"/>
-            <circle class="wheel" cx="115" cy="198" r="26"/><circle class="hub" cx="115" cy="198" r="12"/>
-            <circle class="wheel" cx="290" cy="198" r="26"/><circle class="hub" cx="290" cy="198" r="12"/>
-
-            <g class="spot" data-k="engine" role="button" tabindex="0" aria-label="Двигатель" transform="translate(324 158)"><circle class="hit" r="23"/><circle class="ring" r="11"/><circle class="dot" r="10"/><text>1</text></g>
-            <g class="spot" data-k="gearbox" role="button" tabindex="0" aria-label="КПП" transform="translate(272 160)"><circle class="hit" r="23"/><circle class="ring" r="11"/><circle class="dot" r="10"/><text>2</text></g>
-            <g class="spot" data-k="brakes" role="button" tabindex="0" aria-label="Тормоза" transform="translate(290 204)"><circle class="hit" r="23"/><circle class="ring" r="11"/><circle class="dot" r="10"/><text>3</text></g>
-            <g class="spot" data-k="chassis" role="button" tabindex="0" aria-label="Ходовая" transform="translate(115 204)"><circle class="hit" r="23"/><circle class="ring" r="11"/><circle class="dot" r="10"/><text>4</text></g>
-            <g class="spot" data-k="exhaust" role="button" tabindex="0" aria-label="Выхлоп" transform="translate(196 190)"><circle class="hit" r="23"/><circle class="ring" r="11"/><circle class="dot" r="10"/><text>5</text></g>
-            <g class="spot" data-k="chip" role="button" tabindex="0" aria-label="Прошивка" transform="translate(236 118)"><circle class="hit" r="23"/><circle class="ring" r="11"/><circle class="dot" r="10"/><text>6</text></g>
+            <g class="spot tile" data-k="engine" role="button" tabindex="0" aria-label="Двигатель" transform="translate(36 38)">
+              <rect class="bg" width="100" height="84" rx="14"/>
+              <g class="ic" transform="translate(33 8)"><path d="M7 31V6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v25"/><rect x="11" y="10" width="12" height="7" rx="1.5"/><path d="M17 17v14"/></g>
+              <text class="lbl" x="50" y="60">ДВИГАТЕЛЬ</text>
+              <text class="pr" x="50" y="74" data-min="engine"></text>
+              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">1</text>
+            </g>
+            <g class="spot tile" data-k="gearbox" role="button" tabindex="0" aria-label="Кпп" transform="translate(150 38)">
+              <rect class="bg" width="100" height="84" rx="14"/>
+              <g class="ic" transform="translate(33 8)"><circle cx="17" cy="17" r="9"/><circle cx="17" cy="17" r="3.5"/><path d="M17 2v5M17 27v5M2 17h5M27 17h5M6.4 6.4l3.5 3.5M24.1 24.1l3.5 3.5M6.4 27.6l3.5-3.5M24.1 9.9l3.5-3.5"/></g>
+              <text class="lbl" x="50" y="60">КПП</text>
+              <text class="pr" x="50" y="74" data-min="gearbox"></text>
+              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">2</text>
+            </g>
+            <g class="spot tile" data-k="brakes" role="button" tabindex="0" aria-label="Тормоза" transform="translate(264 38)">
+              <rect class="bg" width="100" height="84" rx="14"/>
+              <g class="ic" transform="translate(33 8)"><circle cx="17" cy="17" r="14"/><circle cx="17" cy="17" r="4.5"/><circle cx="27" cy="17" r="1.2"/><circle cx="22" cy="25.7" r="1.2"/><circle cx="12" cy="25.7" r="1.2"/><circle cx="7" cy="17" r="1.2"/><circle cx="12" cy="8.3" r="1.2"/><circle cx="22" cy="8.3" r="1.2"/><path d="M30.5 6.5A17 17 0 0 1 30.5 27.5"/></g>
+              <text class="lbl" x="50" y="60">ТОРМОЗА</text>
+              <text class="pr" x="50" y="74" data-min="brakes"></text>
+              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">3</text>
+            </g>
+            <g class="spot tile" data-k="chassis" role="button" tabindex="0" aria-label="Ходовая" transform="translate(36 132)">
+              <rect class="bg" width="100" height="84" rx="14"/>
+              <g class="ic" transform="translate(33 8)"><path d="M12 2h10M17 2v6M10 9l14 4-14 4 14 4-14 4M17 25v6"/><circle cx="17" cy="32" r="1.6"/></g>
+              <text class="lbl" x="50" y="60">ХОДОВАЯ</text>
+              <text class="pr" x="50" y="74" data-min="chassis"></text>
+              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">4</text>
+            </g>
+            <g class="spot tile" data-k="exhaust" role="button" tabindex="0" aria-label="Выхлоп" transform="translate(150 132)">
+              <rect class="bg" width="100" height="84" rx="14"/>
+              <g class="ic" transform="translate(33 8)"><rect x="10" y="11" width="18" height="12" rx="6"/><path d="M1 17h9M28 17h5M16 11v12M22 11v12M30 11c2-2 2-4 0-6M26 9c1.5-1.5 1.5-3 0-4.5"/></g>
+              <text class="lbl" x="50" y="60">ВЫХЛОП</text>
+              <text class="pr" x="50" y="74" data-min="exhaust"></text>
+              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">5</text>
+            </g>
+            <g class="spot tile" data-k="chip" role="button" tabindex="0" aria-label="Прошивка" transform="translate(264 132)">
+              <rect class="bg" width="100" height="84" rx="14"/>
+              <g class="ic" transform="translate(33 8)"><rect x="9" y="9" width="16" height="16" rx="2"/><rect x="14" y="14" width="6" height="6" rx="1"/><path d="M13 9V3M17 9V3M21 9V3M13 25v6M17 25v6M21 25v6M9 13H3M9 17H3M9 21H3M25 13h6M25 17h6M25 21h6"/></g>
+              <text class="lbl" x="50" y="60">ПРОШИВКА</text>
+              <text class="pr" x="50" y="74" data-min="chip"></text>
+              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">6</text>
+            </g>
           </g>
         </svg>
       </div>
       <div class="lift-card" id="liftCard" aria-live="polite">
-        <div class="eyebrow">Точки осмотра</div>
-        <p class="hint">Нажмите на точку на автомобиле или выберите узел:</p>
+        <div class="eyebrow">Узлы автомобиля</div>
+        <p class="hint">Нажмите на узел на подъёмнике или выберите из списка:</p>
         <div class="chips" id="liftChips"></div>
       </div>
     </div>
@@ -633,13 +655,17 @@ function showSpot(k){
   var li=sp.items.map(function(id){var s=byId[id];
     return s.vaz ? '<li><span>'+s.name+' — ВАЗ</span><b>от '+rub(s.vaz)+'</b></li><li><span>'+s.name+' — иномарки</span><b>от '+rub(s.foreign)+'</b></li>'
                  : '<li><span>'+s.name+'</span><b>от '+rub(s.price)+'</b></li>';}).join('');
-  card.innerHTML='<div class="eyebrow">Точка '+sp.n+' из 6</div><h3>'+sp.title+'</h3><ul>'+li+'</ul>'+
+  card.innerHTML='<div class="eyebrow">Узел '+sp.n+' из 6</div><h3>'+sp.title+'</h3><ul>'+li+'</ul>'+
     '<div class="row"><button type="button" class="btn sm" data-add="'+k+'">Добавить в заказ-наряд</button><button type="button" class="lnk" data-back>Все точки</button></div>';
 }
 function fillChips(){
   $('#liftChips').innerHTML=Object.keys(SPOTS).map(function(k){return '<button type="button" data-spot="'+k+'">'+SPOTS[k].n+' · '+SPOTS[k].title+'</button>'}).join('');
 }
 fillChips();
+$$('[data-min]').forEach(function(el){
+  var prices=[]; SPOTS[el.dataset.min].items.forEach(function(id){var x=byId[id]; prices.push(x.price||Math.min(x.vaz,x.foreign));});
+  el.textContent='от '+rub(Math.min.apply(null,prices));
+});
 card.addEventListener('click',function(e){
   var t=e.target.closest('button'); if(!t) return;
   if(t.dataset.spot) showSpot(t.dataset.spot);
@@ -656,7 +682,7 @@ $$('.spot').forEach(function(g){
 
 /* ── подъёмник: подъём при прокрутке ── */
 (function(){
-  var sec=$('#podemnik'), rig=$('#liftRig'), pct=$('#liftPct'), MAX=118, queued=false;
+  var sec=$('#podemnik'), rig=$('#liftRig'), pct=$('#liftPct'), MAX=86, queued=false;
   function set(p){ rig.setAttribute('transform','translate(0 '+(-MAX*p).toFixed(1)+')'); pct.textContent=Math.round(p*100)+'%'; }
   if(reduce){ set(1); return; }
   function upd(){
