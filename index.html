@@ -71,7 +71,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--hh);-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--text);
-  padding-bottom:calc(72px + env(safe-area-inset-bottom));overflow-x:hidden}
+  padding-bottom:calc(88px + env(safe-area-inset-bottom));overflow-x:hidden}
 img,svg{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3{font-family:var(--head);text-transform:uppercase;margin:0;font-weight:500;letter-spacing:.01em}
@@ -85,19 +85,24 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .dark :focus-visible{outline-color:var(--y)}
 
-/* кнопки: прямоугольные, с тонкой стрелкой */
-.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-height:56px;padding:0 20px;
-  font:600 .8rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
-  color:var(--ink);background:var(--y);border:1.5px solid var(--y);border-radius:0;cursor:pointer;transition:background .18s,color .18s,border-color .18s}
-.btn svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;transition:transform .18s}
-.btn:hover{background:var(--ink);border-color:var(--ink);color:#fff}
-.btn:hover svg{transform:translateX(4px)}
-.btn.line{background:transparent;border-color:var(--ink)}
-.btn.line:hover{background:var(--ink);color:#fff}
-.btn.sm{min-height:46px;padding:0 16px;font-size:.74rem}
-.dark .btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
-.dark .btn.line{color:#fff;border-color:#55555a}
-.dark .btn.line:hover{background:#fff;border-color:#fff;color:var(--ink)}
+/* кнопки: срезанные углы (как шильдик и знак из логотипа), заливка вытесняется слева направо */
+.btn{--c:12px;--wipe:var(--ink);--onwipe:#fff;position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-height:56px;padding:0 24px;
+  font:600 .8rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--ink);border:0;cursor:pointer;
+  background-image:linear-gradient(var(--wipe),var(--wipe)),linear-gradient(var(--y),var(--y));background-repeat:no-repeat;background-position:left center;background-size:0% 100%,100% 100%;
+  clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)));transition:background-size .4s cubic-bezier(.6,0,.2,1),color .25s}
+.btn svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;transition:transform .25s}
+.btn:hover{background-size:100% 100%,100% 100%;color:var(--onwipe)}
+.btn:hover svg{transform:translateX(5px)}
+.btn.line{--edge:var(--ink);--fill:var(--bg);background:none;color:var(--ink)}
+.btn.line::before{content:"";position:absolute;inset:0;z-index:-2;background:var(--edge)}
+.btn.line::after{content:"";position:absolute;inset:1.5px;z-index:-1;background:var(--fill);clip-path:polygon(0 0,calc(100% - var(--c) + 1px) 0,100% calc(var(--c) - 1px),100% 100%,calc(var(--c) - 1px) 100%,0 calc(100% - var(--c) + 1px));transition:background .3s}
+.btn.line:hover{color:#fff}
+.btn.line:hover::after{background:var(--ink)}
+.btn.sm{--c:9px;min-height:46px;padding:0 18px;font-size:.74rem}
+.dark .btn{--wipe:#fff;--onwipe:var(--ink)}
+.dark .btn.line{--edge:#55555a;--fill:var(--d);color:#fff}
+.dark .btn.line:hover{color:var(--ink)}
+.dark .btn.line:hover::after{background:#fff}
 
 /* ───── шапка ───── */
 .top{position:sticky;top:0;z-index:40;height:var(--hh);background:var(--bg);border-bottom:1px solid var(--line)}
@@ -115,10 +120,20 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .hero{padding:40px 0 0}
 .hero-grid{display:grid;gap:40px}
 .hero h1{font-size:clamp(3.1rem,15.5vw,7rem);line-height:.94;font-weight:500;letter-spacing:0}
-.hero h1 span{display:block;color:var(--mute)}
+.hero h1 .ln{display:block;overflow:hidden;padding-top:.07em;margin-top:-.07em}
+.hero h1 .ln>span{display:block;transform:translateY(112%);animation:up 1s cubic-bezier(.2,.8,.2,1) .1s forwards}
+.hero h1 .ln.g{color:var(--mute)}
+.hero h1 .ln.g>span{animation-delay:.26s}
+@keyframes up{to{transform:none}}
+@keyframes fadeup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero .eyebrow{animation:fadeup .8s both}
+.hero .lead{animation:fadeup .9s .5s both}
+.hero .cta{animation:fadeup .9s .65s both}
+.hero .panel{animation:fadeup 1s .35s both}
+
 .hero .lead{font-size:1.02rem}
 .cta{display:grid;gap:10px;margin-top:32px}
-.panel{background:var(--d);color:#fff;padding:16px 16px 18px;width:100%;max-width:430px;justify-self:end}
+.panel{--c:30px;background:var(--d);color:#fff;padding:18px 18px 20px;width:100%;max-width:430px;justify-self:end;clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)))}
 .panel-top{display:flex;justify-content:space-between;gap:12px;font:500 .64rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dm)}
 .panel-top b{font-weight:500;color:#fff}
 .dial{position:relative;aspect-ratio:1;margin-top:6px}
@@ -143,9 +158,17 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .specs dd{margin:10px 0 0;font:500 clamp(1.05rem,4.6vw,1.45rem)/1.15 var(--mono);letter-spacing:-.02em}
 .specs dd small{display:block;margin-top:6px;font:400 .74rem/1.3 var(--text);letter-spacing:0;color:var(--mute)}
 
+/* ───── бегущая строка ───── */
+.ticker{margin-top:56px;height:48px;display:flex;align-items:center;overflow:hidden;background:var(--y);color:var(--ink);border-block:1.5px solid var(--ink)}
+.ticker-track{display:flex;white-space:nowrap;animation:tick 70s linear infinite;will-change:transform}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{display:inline-flex;align-items:center;font:500 .74rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.ticker-track span::after{content:"";width:7px;height:7px;background:var(--ink);transform:rotate(45deg);margin:0 34px}
+@keyframes tick{to{transform:translateX(-50%)}}
+
 /* ───── 2. подъёмник ───── */
 .dark{background:var(--d);color:#fff}
-.lift{padding:84px 0 88px;margin-top:56px}
+.lift{padding:84px 0 88px}
 .lift-grid{display:grid;gap:36px}
 .nodes-wrap{position:relative;padding-left:26px}
 .rail{position:absolute;left:3px;top:0;bottom:0;width:2px;background:var(--dl)}
@@ -174,7 +197,8 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .order-grid{display:grid;gap:30px}
 .note-ask{margin-top:28px;padding:16px 0 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--mute);max-width:44ch}
 .note-ask a{color:var(--ink);font-weight:600;text-underline-offset:3px}
-.sheet{background:#fff;border:1.5px solid var(--ink);padding:22px 18px 20px}
+.sheet{--c:26px;background:var(--ink);padding:1.5px;clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)))}
+.sheet-in{background:#fff;padding:22px 18px 20px;clip-path:polygon(0 0,calc(100% - var(--c) + 1px) 0,100% calc(var(--c) - 1px),100% 100%,calc(var(--c) - 1px) 100%,0 calc(100% - var(--c) + 1px))}
 .sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:14px;border-bottom:1.5px solid var(--ink)}
 .sheet-head h3{font-size:1.4rem}
 .sheet-head span{font:500 .72rem var(--mono);color:var(--mute);letter-spacing:.06em}
@@ -197,7 +221,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .rows .name{font-size:.95rem;line-height:1.3;font-weight:500}
 .rows .name em{display:block;font:400 .72rem var(--text);font-style:normal;color:var(--mute);margin-top:3px}
 .rows .price{font:500 .9rem var(--mono);white-space:nowrap}
-.total{margin-top:6px;padding:18px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.total{--c:16px;clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)));margin-top:6px;padding:18px 22px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
 .total small{display:block;font:500 .64rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dm)}
 .total b{display:block;margin-top:6px;font:500 1.9rem/1 var(--mono);letter-spacing:-.03em;color:var(--y)}
 .sheet .btn{width:100%;margin-top:12px}
@@ -213,7 +237,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .arrows svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none}
 .reel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 20px 14px;scrollbar-width:thin;scrollbar-color:var(--ink) transparent;-webkit-overflow-scrolling:touch}
 .reel figure{flex:0 0 84%;max-width:480px;margin:0;scroll-snap-align:center}
-.shot{aspect-ratio:4/3;background:#e0ded4;position:relative;overflow:hidden;display:grid;place-items:center}
+.shot{--c:24px;clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)));aspect-ratio:4/3;background:#e0ded4;position:relative;overflow:hidden;display:grid;place-items:center}
 .shot::after{content:attr(data-file);font:500 .7rem var(--mono);color:#9c9a8f;letter-spacing:.1em}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
 .reel figcaption{display:flex;gap:14px;padding:12px 0 0;font-size:.84rem;color:var(--mute);border-top:1.5px solid var(--ink);margin-top:10px}
@@ -221,7 +245,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 
 /* ───── 5. бортовой журнал ───── */
 .log{padding:0 0 88px}
-.rating{display:flex;align-items:center;gap:26px;margin:30px 0 14px;padding:24px;background:var(--d);color:#fff}
+.rating{--c:24px;clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)));display:flex;align-items:center;gap:26px;margin:30px 0 14px;padding:26px 28px;background:var(--d);color:#fff}
 .rating .n{font:500 4rem/1 var(--mono);letter-spacing:-.05em}
 .score{display:flex;gap:4px}
 .score i{display:block;width:26px;height:6px;background:var(--dl)}
@@ -229,7 +253,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .score i.p{background:linear-gradient(90deg,var(--y) 80%,var(--dl) 80%)}
 .rating p{margin:12px 0 0;font:500 .72rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dm)}
 .entries{display:grid;gap:14px}
-.entry{padding:22px;min-height:160px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.entry{--c:20px;clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)));padding:24px;min-height:160px;background:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:20px}
 .entry header{font:500 .66rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
 .entry p{margin:0;font-size:1rem}
 .entry footer{font-size:.84rem;color:var(--mute)}
@@ -244,11 +268,17 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 .routes{display:grid;gap:10px;margin-top:30px}
 .end{margin-top:60px;padding-top:22px;border-top:1px solid var(--dl);font-size:.76rem;color:var(--dm);line-height:1.6}
 
-/* ───── липкая панель на телефоне ───── */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
-.dock .btn{min-height:58px;justify-content:center;font-size:.82rem}
-.dock .btn.line{border:0;border-right:1.5px solid var(--ink)}
-.dock .btn:not(.line){border:0}
+/* ───── липкая панель на телефоне: плавающий шильдик ───── */
+.dock{position:fixed;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:50;filter:drop-shadow(0 10px 18px rgba(0,0,0,.38))}
+.dock-in{--c:16px;display:grid;grid-template-columns:1fr 1.25fr;gap:6px;padding:6px;background:#1b1b1d;
+  clip-path:polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c))}
+.dock a{--c:11px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;font:600 .74rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  clip-path:polygon(0 0,calc(100% - var(--c)) 0,100% var(--c),100% 100%,var(--c) 100%,0 calc(100% - var(--c)));transition:filter .15s}
+.dock a:active{filter:brightness(.88)}
+.dock a svg{width:19px;height:19px;flex:none}
+.dock .d-call{background:#2e2e31;color:#fff}
+.dock .d-call svg{fill:var(--y)}
+.dock .d-wa{background:var(--y);color:var(--ink)}
 
 .js .rise{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
 .js .rise.in{opacity:1;transform:none}
@@ -263,12 +293,12 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
   .specs{grid-template-columns:repeat(4,1fr);margin-top:72px}
   .specs>div{padding:24px 20px 26px 0;border-bottom:0}
   .specs>div+div{padding-left:24px;border-left:1px solid var(--line)}
-  .lift{margin-top:80px}
+  .ticker{margin-top:80px}
   .lift-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start}
   .lift-intro{position:sticky;top:calc(var(--hh) + 40px)}
   .order-grid{grid-template-columns:1fr 600px;gap:72px;align-items:start}
   .order-info{position:sticky;top:calc(var(--hh) + 40px)}
-  .sheet{padding:32px 34px 28px}
+  .sheet-in{padding:34px 36px 30px}
   .arrows{display:flex}
   .reel{padding-left:max(20px,calc((100vw - 1100px)/2));padding-right:20px}
   .reel figure{flex-basis:440px}
@@ -282,6 +312,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
+  .hero h1 .ln>span{transform:none}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .rise{opacity:1;transform:none}
 }
@@ -310,7 +341,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
     <div class="hero-grid">
       <div>
         <div class="eyebrow">Автосервис · Казань</div>
-        <h1>Автосервис<span>в Казани</span></h1>
+        <h1><span class="ln"><span>Автосервис</span></span> <span class="ln g"><span>в Казани</span></span></h1>
         <p class="lead">Колодки, ШРУСы, масло, выхлоп, чип-тюнинг. Цены на работы — на этой странице. Ежедневно с 9:00 до 22:00.</p>
         <div class="cta">
           <a class="btn" data-wa href="https://wa.me/">Написать в WhatsApp <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
@@ -344,6 +375,8 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
   </div>
 </section>
 
+<div class="ticker" aria-hidden="true"><div class="ticker-track" id="tickerTrack"></div></div>
+
 <!-- ═════════ 2. ПОДЪЁМНИК ═════════ -->
 <section class="lift dark" id="podemnik" aria-labelledby="h-lift">
   <div class="wrap lift-grid">
@@ -370,7 +403,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
       <div class="note-ask">Нет нужной работы в списке или другая модель автомобиля? <a data-wa href="https://wa.me/" target="_blank" rel="noopener">Напишите нам в WhatsApp</a> — уточним стоимость.</div>
     </div>
 
-    <form class="sheet rise" id="orderForm" onsubmit="return false">
+    <form class="sheet rise" id="orderForm" onsubmit="return false"><div class="sheet-in">
       <div class="sheet-head"><h3>Заказ-наряд</h3><span>от <span id="orderDate">__.__.____</span></span></div>
       <div class="seg" role="radiogroup" aria-label="Тип автомобиля">
         <label><input type="radio" name="car" value="vaz" checked><span>ВАЗ</span></label>
@@ -383,7 +416,7 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
       </div>
       <a class="btn" id="sendOrder" href="https://wa.me/" target="_blank" rel="noopener">Отправить заказ в WhatsApp <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
       <p class="after" id="orderNote">Выберите работы — они попадут в текст сообщения.</p>
-    </form>
+    </div></form>
   </div>
 </section>
 
@@ -456,10 +489,10 @@ h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
 </section>
 </main>
 
-<nav class="dock" aria-label="Быстрая связь">
-  <a class="btn line" data-tel href="#kontakty">Позвонить</a>
-  <a class="btn" data-wa href="https://wa.me/">WhatsApp</a>
-</nav>
+<nav class="dock" aria-label="Быстрая связь"><div class="dock-in">
+  <a class="d-call" data-tel href="#kontakty"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>Позвонить</a>
+  <a class="d-wa" data-wa href="https://wa.me/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.5-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path transform="translate(6.6 6.6) scale(.45)" fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>WhatsApp</a>
+</div></nav>
 
 <script>
 (function(){
@@ -542,6 +575,10 @@ var SERVICES = [
   {id:'chip', name:'Чип-тюнинг',                    price:3000}
 ];
 var byId={}; SERVICES.forEach(function(s){byId[s.id]=s});
+(function(){ var t=[]; SERVICES.forEach(function(s){
+  if(s.vaz){ t.push(s.name+' · ВАЗ от '+rub(s.vaz)); t.push(s.name+' · иномарки от '+rub(s.foreign)); }
+  else t.push(s.name+' · от '+rub(s.price)); });
+  var h=t.map(function(x){return '<span>'+x+'</span>'}).join(''); $('#tickerTrack').innerHTML=h+h; })();
 var SPOTS = {
   engine: {n:1,title:'Двигатель', items:['oil']},
   gearbox:{n:2,title:'КПП',       items:['mt','at']},
