@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Автоцех — автосервис в Казани, ул. Меридианная, 26Б</title>
 <meta name="description" content="Автосервис «Автоцех» в Казани: замена колодок, ШРУСа, масла в двигателе, КПП и АКПП, ремонт выхлопной системы, чип-тюнинг. Ул. Меридианная, 26Б. Ежедневно с 9:00 до 22:00.">
-<meta name="theme-color" content="#f6f5f0">
+<meta name="theme-color" content="#efeee9">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:site_name" content="Автоцех">
@@ -15,7 +15,7 @@
 <link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- Когда появится телефон — добавьте сюда строку "telephone": "+7..." -->
 <script type="application/ld+json">
@@ -59,243 +59,231 @@
 
 <style>
 :root{
-  /* палитра взята из логотипа: сигнальный жёлтый, чёрный, белый */
-  --bg:#f6f5f0; --card:#fff; --ink:#0c0c0d; --mute:#6c6c66; --line:#e2e0d6;
-  --y:#ffee05; --y-d:#e8d800; --dark:#0c0c0d; --dark2:#161617;
+  /* палитра из логотипа: сигнальный жёлтый, чёрный, белый. Жёлтый — только как акцент */
+  --bg:#efeee9; --ink:#0a0a0a; --mute:#66665f; --line:#cdcbc1; --y:#ffee05;
+  --d:#0a0a0a; --d2:#131314; --dl:#2a2a2d; --dm:#8e8e88;
   --on:#1f9d4a; --off:#d3402b;
   --head:'Oswald','Arial Narrow',Impact,sans-serif;
   --text:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;
-  --hh:62px; --r:18px;
+  --hh:64px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:var(--hh);-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--text);
-  padding-bottom:calc(76px + env(safe-area-inset-bottom));overflow-x:hidden}
+  padding-bottom:calc(72px + env(safe-area-inset-bottom));overflow-x:hidden}
 img,svg{display:block;max-width:100%}
 a{color:inherit}
-h1,h2,h3{font-family:var(--head);text-transform:uppercase;margin:0;line-height:1.02;letter-spacing:.01em;font-weight:700}
-h2{font-size:clamp(2rem,8.5vw,3.4rem)}
-.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
-.eyebrow{font:500 .72rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:10px;margin-bottom:14px}
-.eyebrow::before{content:"";width:9px;height:9px;background:var(--y);box-shadow:0 0 0 1.5px var(--ink);transform:rotate(45deg);flex:none}
-.lead{color:var(--mute);margin:14px 0 0;max-width:44ch}
-:focus-visible{outline:3px solid var(--ink);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:var(--head);text-transform:uppercase;margin:0;font-weight:500;letter-spacing:.01em}
+h2{font-size:clamp(2rem,7.5vw,3.2rem);line-height:1}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.eyebrow{font:500 .7rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:4px;background:var(--y);flex:none}
+.dark .eyebrow{color:var(--dm)}
+.lead{color:var(--mute);margin:18px 0 0;max-width:42ch}
+.dark .lead{color:var(--dm)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
 .dark :focus-visible{outline-color:var(--y)}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 24px;
-  font:600 1rem/1 var(--text);color:var(--ink);background:var(--y);border:0;border-radius:999px;text-decoration:none;cursor:pointer;
-  transition:transform .15s,background .15s,box-shadow .15s}
-.btn:hover{background:var(--y-d)} .btn:active{transform:scale(.98)}
-.btn svg{width:20px;height:20px;flex:none}
-.btn.line{background:transparent;box-shadow:inset 0 0 0 1.5px var(--ink)}
+/* кнопки: прямоугольные, с тонкой стрелкой */
+.btn{display:inline-flex;align-items:center;justify-content:space-between;gap:22px;min-height:56px;padding:0 20px;
+  font:600 .8rem/1 var(--text);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  color:var(--ink);background:var(--y);border:1.5px solid var(--y);border-radius:0;cursor:pointer;transition:background .18s,color .18s,border-color .18s}
+.btn svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;transition:transform .18s}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn:hover svg{transform:translateX(4px)}
+.btn.line{background:transparent;border-color:var(--ink)}
 .btn.line:hover{background:var(--ink);color:#fff}
-.btn.sm{min-height:44px;padding:0 18px;font-size:.9rem}
-.dark .btn.line{color:#fff;box-shadow:inset 0 0 0 1.5px #55555a}
-.dark .btn.line:hover{background:#fff;color:var(--ink)}
+.btn.sm{min-height:46px;padding:0 16px;font-size:.74rem}
+.dark .btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.dark .btn.line{color:#fff;border-color:#55555a}
+.dark .btn.line:hover{background:#fff;border-color:#fff;color:var(--ink)}
 
 /* ───── шапка ───── */
 .top{position:sticky;top:0;z-index:40;height:var(--hh);background:var(--bg);border-bottom:1px solid var(--line)}
-.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:700 1.3rem var(--head);letter-spacing:.14em;text-transform:uppercase}
-.brand img{height:46px;width:46px;mix-blend-mode:multiply}
-.nav{display:none;gap:26px;font-size:.88rem}
+.top::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--y)}
+.top .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:14px;padding-top:4px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:500 1.25rem var(--head);letter-spacing:.2em;text-transform:uppercase}
+.brand img{height:44px;width:44px;mix-blend-mode:multiply}
+.nav{display:none;gap:30px;font:500 .72rem var(--mono);letter-spacing:.12em;text-transform:uppercase}
 .nav a{text-decoration:none;color:var(--mute);transition:color .15s} .nav a:hover{color:var(--ink)}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font:500 .74rem/1 var(--mono);white-space:nowrap}
-.pill i{width:8px;height:8px;border-radius:50%;background:var(--mute);flex:none}
-.pill.open i{background:var(--on);box-shadow:0 0 0 0 rgba(31,157,74,.5);animation:pulse 2.4s infinite}
-.pill.closed i{background:var(--off)}
-@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(31,157,74,0)}100%{box-shadow:0 0 0 0 rgba(31,157,74,0)}}
+.live{display:flex;align-items:center;gap:9px;font:500 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.live i{width:7px;height:7px;border-radius:50%;background:var(--mute);flex:none}
+.live.open i{background:var(--on)} .live.closed i{background:var(--off)}
 
 /* ───── 1. первый экран ───── */
-.hero{padding:34px 0 20px}
-.hero-grid{display:grid;gap:34px}
-.hero h1{font-size:clamp(3.1rem,16.5vw,7rem);line-height:1}
-.hero h1 mark{display:inline-block;margin:.08em 0 .1em -.06em;padding:.02em .12em 0;background:var(--y);color:var(--ink);line-height:1.04}
-.hero .lead{font-size:1.05rem;max-width:36ch}
-.cta{display:grid;gap:10px;margin-top:26px}
-.dial-wrap{position:relative;width:min(82vw,360px);aspect-ratio:1;margin:8px auto 0;display:grid;place-items:center}
-/* ромб из логотипа */
-.dial-wrap::before,.dial-wrap::after{content:"";position:absolute;border-radius:22px;transform:rotate(45deg)}
-.dial-wrap::before{inset:6%;background:var(--y)}
-.dial-wrap::after{inset:2.5%;border:1.5px solid var(--ink)}
-.dial{position:relative;z-index:1;width:84%;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 0 0 1.5px var(--ink),0 22px 40px -18px rgba(0,0,0,.35)}
+.hero{padding:40px 0 0}
+.hero-grid{display:grid;gap:40px}
+.hero h1{font-size:clamp(3.1rem,15.5vw,7rem);line-height:.94;font-weight:500;letter-spacing:0}
+.hero h1 span{display:block;color:var(--mute)}
+.hero .lead{font-size:1.02rem}
+.cta{display:grid;gap:10px;margin-top:32px}
+.panel{background:var(--d);color:#fff;padding:16px 16px 18px;width:100%;max-width:430px;justify-self:end}
+.panel-top{display:flex;justify-content:space-between;gap:12px;font:500 .64rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dm)}
+.panel-top b{font-weight:500;color:#fff}
+.dial{position:relative;aspect-ratio:1;margin-top:6px}
 .dial svg{width:100%;height:100%}
-.dial .tk{stroke:#b9b8ae;stroke-width:1.6;stroke-linecap:round}
-.dial .tk.on{stroke:var(--ink)}
-.dial .tk.big{stroke-width:2.6}
-.dial .lb{font:500 11.5px var(--mono);fill:var(--mute);text-anchor:middle;dominant-baseline:middle}
-.dial .lb.on{fill:var(--ink);font-weight:700}
-.dial .track{fill:none;stroke:#eeece4;stroke-width:9;stroke-linecap:round}
-.dial .zone{fill:none;stroke:var(--y);stroke-width:9;stroke-linecap:round}
+.dial .track{fill:none;stroke:var(--dl);stroke-width:2}
+.dial .zone{fill:none;stroke:var(--y);stroke-width:3}
+.dial .tk{stroke:#4a4a4f;stroke-width:1}
+.dial .tk.big{stroke:#8e8e88;stroke-width:1.5}
+.dial .tk.on{stroke:#fff}
+.dial .lb{font:500 10.5px var(--mono);fill:var(--dm);text-anchor:middle;dominant-baseline:middle}
+.dial .lb.on{fill:#fff}
 .dial .needle{transform-origin:160px 160px;transform:rotate(39.4deg)}
 .dial.run .needle{animation:rev 2.6s cubic-bezier(.3,.1,.3,1) both}
 @keyframes rev{0%{transform:rotate(-135deg)}45%{transform:rotate(135deg)}68%{transform:rotate(28deg)}82%{transform:rotate(46deg)}92%{transform:rotate(37deg)}100%{transform:rotate(39.4deg)}}
-.dial .read{position:absolute;left:0;right:0;bottom:15%;text-align:center;pointer-events:none}
-.dial .read b{display:block;font:700 clamp(1.8rem,9vw,2.5rem)/1 var(--mono);letter-spacing:-.02em}
-.dial .read span{font:500 .6rem var(--mono);letter-spacing:.24em;color:var(--mute)}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:34px;border-top:1px solid var(--ink)}
-.facts div{padding:16px 12px 6px 0}
-.facts div+div{padding-left:14px;border-left:1px solid var(--line)}
-.facts b{display:block;font:700 clamp(1.25rem,6vw,2rem)/1.1 var(--mono);letter-spacing:-.02em;white-space:nowrap}
-.facts span{display:block;font-size:.74rem;color:var(--mute);line-height:1.35;margin-top:6px}
+.dial .read{position:absolute;left:0;right:0;bottom:13%;text-align:center;pointer-events:none}
+.dial .read b{display:block;font:500 clamp(2rem,10vw,2.8rem)/1 var(--mono);letter-spacing:-.03em}
+.dial .read span{display:block;margin-top:6px;font:500 .58rem var(--mono);letter-spacing:.3em;color:var(--dm)}
+.specs{display:grid;grid-template-columns:1fr 1fr;margin:44px 0 0;border-top:1.5px solid var(--ink)}
+.specs>div{padding:18px 14px 20px 0;border-bottom:1px solid var(--line)}
+.specs>div:nth-child(even){padding-left:16px;border-left:1px solid var(--line)}
+.specs dt{font:500 .64rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.specs dd{margin:10px 0 0;font:500 clamp(1.05rem,4.6vw,1.45rem)/1.15 var(--mono);letter-spacing:-.02em}
+.specs dd small{display:block;margin-top:6px;font:400 .74rem/1.3 var(--text);letter-spacing:0;color:var(--mute)}
 
 /* ───── 2. подъёмник ───── */
-.dark{background:var(--dark);color:#fff}
-.lift{height:230svh}
-.lift-stick{position:sticky;top:var(--hh);height:calc(100svh - var(--hh));display:flex;flex-direction:column;padding:22px 0 14px;overflow:hidden}
-.lift-stick>.wrap{width:100%}
-.lift .eyebrow{color:#9a9a93}
-.lift-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
-.lift-meter{font:500 .7rem var(--mono);letter-spacing:.14em;color:#9a9a93;text-align:right}
-.lift-meter b{display:block;font-size:1.3rem;color:var(--y);letter-spacing:0}
-.lift-scene{flex:1;min-height:0;display:flex;align-items:center;justify-content:center}
-.lift-scene svg{width:100%;height:100%;max-height:100%}
-.post{fill:#1b1b1d;stroke:#3b3b3f}
-.floor{stroke:#3b3b3f;stroke-width:2}
-.spot{cursor:pointer;outline:none}
-.tile .bg{fill:var(--dark2);stroke:#44444a;stroke-width:1.5;transition:fill .2s,stroke .2s}
-.tile:hover .bg{stroke:var(--y)}
-.tile .ic{fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
-.tile .lbl{fill:#fff;font:600 12.5px var(--head);letter-spacing:.09em;text-anchor:middle;pointer-events:none;transition:fill .2s}
-.tile .pr{fill:#9a9a93;font:500 8.5px var(--mono);text-anchor:middle;pointer-events:none;transition:fill .2s}
-.tile .nb{fill:var(--y);transition:fill .2s}
-.tile .nt{fill:var(--dark);font:700 8.5px var(--mono);text-anchor:middle;dominant-baseline:central;pointer-events:none;transition:fill .2s}
-.tile.on .bg{fill:var(--y);stroke:var(--y)}
-.tile.on .ic{stroke:var(--dark)}
-.tile.on .lbl,.tile.on .pr{fill:var(--dark)}
-.tile.on .nb{fill:var(--dark)}
-.tile.on .nt{fill:var(--y)}
-.tile:focus-visible .bg{stroke:#fff;stroke-width:3}
-.lift-card{min-height:184px;margin-top:8px;padding:18px;background:#fff;color:var(--ink);border-radius:var(--r)}
-.lift-card .eyebrow{color:var(--mute);margin-bottom:8px}
-.lift-card h3{font-size:1.6rem;margin:0 0 8px}
-.lift-card ul{list-style:none;margin:0;padding:0}
-.lift-card li{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid var(--line);font-size:.9rem}
-.lift-card li b{font:700 .9rem var(--mono);white-space:nowrap}
-.lift-card .row{display:flex;gap:14px;align-items:center;margin-top:12px;flex-wrap:wrap}
-.lift-card .lnk{background:none;border:0;padding:6px 0;font:500 .85rem var(--text);color:var(--mute);cursor:pointer;text-decoration:underline;text-underline-offset:4px}
-.lift-card .hint{color:var(--mute);font-size:.92rem;margin:0}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.chips button{padding:9px 13px;border:1.5px solid var(--line);border-radius:999px;background:#fff;font:500 .8rem var(--text);cursor:pointer;color:var(--ink)}
-.chips button:hover{border-color:var(--ink)}
+.dark{background:var(--d);color:#fff}
+.lift{padding:84px 0 88px;margin-top:56px}
+.lift-grid{display:grid;gap:36px}
+.nodes-wrap{position:relative;padding-left:26px}
+.rail{position:absolute;left:3px;top:0;bottom:0;width:2px;background:var(--dl)}
+.carriage{position:absolute;left:0;top:0;width:8px;height:0;background:var(--y);opacity:0;transition:transform .5s cubic-bezier(.6,0,.2,1),height .5s cubic-bezier(.6,0,.2,1),opacity .3s}
+.nodes{list-style:none;margin:0;padding:0;border-bottom:1px solid var(--dl)}
+.node{border-top:1px solid var(--dl)}
+.node-head{display:grid;grid-template-columns:38px 1fr auto 22px;gap:10px;align-items:center;width:100%;padding:20px 0;background:none;border:0;color:#fff;text-align:left;cursor:pointer;font:inherit}
+.node-head .n{font:500 .74rem var(--mono);color:var(--dm);letter-spacing:.08em}
+.node-head .t{font:500 clamp(1.35rem,5.6vw,1.9rem)/1 var(--head);text-transform:uppercase;letter-spacing:.02em}
+.node-head .m{font:500 .76rem var(--mono);color:var(--dm);white-space:nowrap}
+.node-head .pl{position:relative;width:14px;height:14px;justify-self:end}
+.node-head .pl::before,.node-head .pl::after{content:"";position:absolute;left:0;right:0;top:6.25px;height:1.5px;background:currentColor;transition:transform .25s}
+.node-head .pl::after{transform:rotate(90deg)}
+.node.open .pl::after{transform:rotate(0)}
+.node.open .n{color:var(--y)}
+.node-head:hover .t{color:var(--y)}
+.node-body{padding:0 0 22px 48px;animation:fade .35s}
+@keyframes fade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.node-body ul{list-style:none;margin:0 0 18px;padding:0}
+.node-body li{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-top:1px solid var(--dl);font-size:.92rem}
+.node-body li:first-child{border-top:0}
+.node-body li b{font:500 .9rem var(--mono);white-space:nowrap}
 
 /* ───── 3. заказ-наряд ───── */
-.order{padding:84px 0}
-.order-grid{display:grid;gap:28px}
-.note-ask{margin-top:22px;padding:16px 18px;border-radius:14px;background:#fff;border:1px dashed #bdbbb0;font-size:.9rem;max-width:44ch}
-.note-ask a{font-weight:600;text-underline-offset:3px}
-.sheet{background:#fff;border-radius:24px;padding:22px 18px 20px;box-shadow:0 1px 0 var(--line),0 30px 60px -30px rgba(0,0,0,.28)}
+.order{padding:88px 0}
+.order-grid{display:grid;gap:30px}
+.note-ask{margin-top:28px;padding:16px 0 0;border-top:1px solid var(--line);font-size:.9rem;color:var(--mute);max-width:44ch}
+.note-ask a{color:var(--ink);font-weight:600;text-underline-offset:3px}
+.sheet{background:#fff;border:1.5px solid var(--ink);padding:22px 18px 20px}
 .sheet-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:14px;border-bottom:1.5px solid var(--ink)}
-.sheet-head h3{font-size:1.5rem}
-.sheet-head span{font:500 .74rem var(--mono);color:var(--mute)}
-.seg{display:inline-flex;margin:16px 0 4px;padding:4px;border-radius:999px;background:#f0eee6;border:0}
+.sheet-head h3{font-size:1.4rem}
+.sheet-head span{font:500 .72rem var(--mono);color:var(--mute);letter-spacing:.06em}
+.seg{display:inline-flex;margin:18px 0 6px;border:1.5px solid var(--ink)}
 .seg label{cursor:pointer}
 .seg input{position:absolute;opacity:0}
-.seg span{display:block;padding:10px 20px;border-radius:999px;font:600 .88rem var(--text);transition:background .2s,color .2s}
+.seg span{display:block;padding:11px 22px;font:600 .74rem var(--text);letter-spacing:.12em;text-transform:uppercase;transition:background .18s,color .18s}
+.seg label+label span{border-left:1.5px solid var(--ink)}
 .seg input:checked+span{background:var(--ink);color:#fff}
-.seg input:focus-visible+span{outline:3px solid var(--ink);outline-offset:2px}
-.rows{list-style:none;margin:6px 0 0;padding:0}
-.rows li+li{border-top:1px solid var(--line)}
-.rows label{display:grid;grid-template-columns:26px 1fr auto;gap:14px;align-items:center;min-height:60px;padding:10px 0;cursor:pointer}
+.seg input:focus-visible+span{outline:2px solid var(--ink);outline-offset:3px}
+.rows{list-style:none;margin:8px 0 0;padding:0}
+.rows li{border-top:1px solid var(--line)}
+.rows label{display:grid;grid-template-columns:22px 1fr auto;gap:14px;align-items:center;min-height:62px;padding:10px 0;cursor:pointer}
 .rows input{position:absolute;opacity:0}
-.box{width:26px;height:26px;border:1.5px solid var(--ink);border-radius:8px;display:grid;place-items:center;transition:background .15s}
-.box svg{width:16px;height:16px;stroke:var(--ink);stroke-width:3.4;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .22s}
-.rows input:checked+.box{background:var(--y)}
+.box{width:22px;height:22px;border:1.5px solid var(--ink);display:grid;place-items:center;transition:background .15s}
+.box svg{width:14px;height:14px;stroke:var(--y);stroke-width:3;fill:none;stroke-linecap:square;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .2s}
+.rows input:checked+.box{background:var(--ink)}
 .rows input:checked+.box svg{stroke-dashoffset:0}
-.rows input:focus-visible+.box{outline:3px solid var(--ink);outline-offset:2px}
+.rows input:focus-visible+.box{outline:2px solid var(--ink);outline-offset:3px}
 .rows .name{font-size:.95rem;line-height:1.3;font-weight:500}
-.rows .name em{display:block;font:400 .72rem var(--text);font-style:normal;color:var(--mute);margin-top:2px}
-.rows .price{font:700 .92rem var(--mono);white-space:nowrap}
-.total{margin-top:10px;padding:18px;border-radius:16px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
-.total small{display:block;font-size:.74rem;color:#a9a9a2;line-height:1.35}
-.total b{font:700 1.9rem/1 var(--mono);letter-spacing:-.02em;color:var(--y)}
-.sheet .btn{width:100%;margin-top:14px}
-.sheet .after{font-size:.76rem;color:var(--mute);margin:12px 2px 0}
+.rows .name em{display:block;font:400 .72rem var(--text);font-style:normal;color:var(--mute);margin-top:3px}
+.rows .price{font:500 .9rem var(--mono);white-space:nowrap}
+.total{margin-top:6px;padding:18px;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.total small{display:block;font:500 .64rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--dm)}
+.total b{display:block;margin-top:6px;font:500 1.9rem/1 var(--mono);letter-spacing:-.03em;color:var(--y)}
+.sheet .btn{width:100%;margin-top:12px}
+.sheet .after{font-size:.74rem;color:var(--mute);margin:12px 0 0}
 
 /* ───── 4. смотровая яма ───── */
-.pit{padding:0 0 84px}
+.pit{padding:0 0 88px}
 .pit-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-.arrows{display:none;gap:8px}
-.arrows button{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .15s,color .15s}
+.arrows{display:none;gap:0}
+.arrows button{width:52px;height:52px;border:1.5px solid var(--ink);background:transparent;cursor:pointer;display:grid;place-items:center;transition:background .15s,color .15s}
+.arrows button+button{border-left:0}
 .arrows button:hover{background:var(--ink);color:#fff}
-.arrows svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
-.reel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:26px 20px 14px;scrollbar-width:thin;scrollbar-color:var(--ink) transparent;-webkit-overflow-scrolling:touch}
+.arrows svg{width:20px;height:20px;stroke:currentColor;stroke-width:1.8;fill:none}
+.reel{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 20px 14px;scrollbar-width:thin;scrollbar-color:var(--ink) transparent;-webkit-overflow-scrolling:touch}
 .reel figure{flex:0 0 84%;max-width:480px;margin:0;scroll-snap-align:center}
-.shot{aspect-ratio:4/3;border-radius:var(--r);background:#e9e7de;position:relative;overflow:hidden;display:grid;place-items:center}
-.shot::after{content:attr(data-file);font:500 .72rem var(--mono);color:#9c9a8f;letter-spacing:.08em}
+.shot{aspect-ratio:4/3;background:#e0ded4;position:relative;overflow:hidden;display:grid;place-items:center}
+.shot::after{content:attr(data-file);font:500 .7rem var(--mono);color:#9c9a8f;letter-spacing:.1em}
 .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
-.reel figcaption{display:flex;gap:12px;padding:12px 4px 0;font-size:.86rem;color:var(--mute)}
-.reel figcaption b{font:700 .78rem var(--mono);color:var(--ink)}
+.reel figcaption{display:flex;gap:14px;padding:12px 0 0;font-size:.84rem;color:var(--mute);border-top:1.5px solid var(--ink);margin-top:10px}
+.reel figcaption b{font:500 .74rem var(--mono);color:var(--ink);letter-spacing:.06em}
 
 /* ───── 5. бортовой журнал ───── */
-.log{padding:0 0 84px}
-.rating{display:flex;align-items:center;gap:22px;margin:26px 0 22px;padding:22px;border-radius:var(--r);background:var(--ink);color:#fff}
-.rating .n{font:700 3.8rem/1 var(--mono);letter-spacing:-.04em;color:var(--y)}
-.stars{position:relative;display:inline-block;font-size:1.35rem;letter-spacing:.1em;color:#4a4a4f;line-height:1}
-.stars::after{content:"★★★★★";position:absolute;left:0;top:0;width:96%;overflow:hidden;color:var(--y);white-space:nowrap}
-.rating p{margin:.45rem 0 0;font-size:.84rem;color:#b5b5ad}
-.entries{display:grid;gap:12px}
-.entry{padding:22px;min-height:150px;border-radius:var(--r);background:#fff;border:1.5px dashed #c9c7bb;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
-.entry header{font:500 .7rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.log{padding:0 0 88px}
+.rating{display:flex;align-items:center;gap:26px;margin:30px 0 14px;padding:24px;background:var(--d);color:#fff}
+.rating .n{font:500 4rem/1 var(--mono);letter-spacing:-.05em}
+.score{display:flex;gap:4px}
+.score i{display:block;width:26px;height:6px;background:var(--dl)}
+.score i.f{background:var(--y)}
+.score i.p{background:linear-gradient(90deg,var(--y) 80%,var(--dl) 80%)}
+.rating p{margin:12px 0 0;font:500 .72rem/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dm)}
+.entries{display:grid;gap:14px}
+.entry{padding:22px;min-height:160px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;gap:20px}
+.entry header{font:500 .66rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
 .entry p{margin:0;font-size:1rem}
 .entry footer{font-size:.84rem;color:var(--mute)}
 
 /* ───── 6. контакты ───── */
-.contacts{padding:84px 0 52px}
-.contacts .eyebrow{color:#9a9a93}
-.contacts dl{margin:34px 0 0;display:grid;gap:0}
-.contacts dl>div{padding:18px 0;border-top:1px solid #2c2c2f}
-.contacts dt{font:500 .7rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#9a9a93}
-.contacts dd{margin:6px 0 0;font:600 clamp(1.4rem,6vw,2rem)/1.15 var(--head);letter-spacing:.02em;text-transform:uppercase}
+.contacts{padding:88px 0 52px}
+.contacts dl{margin:40px 0 0;display:grid}
+.contacts dl>div{padding:20px 0;border-top:1px solid var(--dl)}
+.contacts dt{font:500 .66rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--dm)}
+.contacts dd{margin:8px 0 0;font:500 clamp(1.4rem,6vw,1.9rem)/1.15 var(--head);letter-spacing:.02em;text-transform:uppercase}
 .contacts dd a{text-underline-offset:5px}
-.routes{display:grid;gap:10px;margin-top:26px}
-.end{margin-top:56px;padding-top:22px;border-top:1px solid #2c2c2f;font-size:.76rem;color:#8a8a84;line-height:1.6}
+.routes{display:grid;gap:10px;margin-top:30px}
+.end{margin-top:60px;padding-top:22px;border-top:1px solid var(--dl);font-size:.76rem;color:var(--dm);line-height:1.6}
 
 /* ───── липкая панель на телефоне ───── */
-.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1.2fr;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(246,245,240,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
-.dock .btn{min-height:56px;font-size:1.05rem}
-.dock .btn:not(.line){box-shadow:0 0 0 1.5px var(--ink)}
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:50;display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-top:1.5px solid var(--ink);padding-bottom:env(safe-area-inset-bottom)}
+.dock .btn{min-height:58px;justify-content:center;font-size:.82rem}
+.dock .btn.line{border:0;border-right:1.5px solid var(--ink)}
+.dock .btn:not(.line){border:0}
 
-.js .rise{opacity:0;transform:translateY(22px);transition:opacity .7s,transform .7s}
+.js .rise{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
 .js .rise.in{opacity:1;transform:none}
 
 @media (min-width:860px){
   body{padding-bottom:0;font-size:17px}
   .dock{display:none}
   .nav{display:flex}
-  .hero{padding:64px 0 36px}
-  .hero-grid{grid-template-columns:1.1fr .9fr;align-items:center;gap:40px}
-  .cta{grid-template-columns:auto auto;justify-content:start}
-  .dial-wrap{width:min(100%,430px);margin:0 0 0 auto}
-  .facts{margin-top:56px}
-  .facts div{padding:22px 20px 8px 0} .facts div+div{padding-left:26px}
-  .lift-stick{padding-top:34px}
-  .lift-layout{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:36px;flex:1;min-height:0;align-items:center}
-  .lift-scene{height:100%;max-height:72svh}
-  .lift-card{margin:0}
-  .order-grid{grid-template-columns:1fr 600px;gap:64px;align-items:start}
-  .order-info{position:sticky;top:calc(var(--hh) + 28px)}
-  .sheet{padding:30px 32px 26px}
+  .hero{padding-top:72px}
+  .hero-grid{grid-template-columns:1.15fr .85fr;align-items:end;gap:56px}
+  .cta{grid-template-columns:repeat(2,minmax(0,300px))}
+  .specs{grid-template-columns:repeat(4,1fr);margin-top:72px}
+  .specs>div{padding:24px 20px 26px 0;border-bottom:0}
+  .specs>div+div{padding-left:24px;border-left:1px solid var(--line)}
+  .lift{margin-top:80px}
+  .lift-grid{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:72px;align-items:start}
+  .lift-intro{position:sticky;top:calc(var(--hh) + 40px)}
+  .order-grid{grid-template-columns:1fr 600px;gap:72px;align-items:start}
+  .order-info{position:sticky;top:calc(var(--hh) + 40px)}
+  .sheet{padding:32px 34px 28px}
   .arrows{display:flex}
-  .reel{padding-left:max(20px,calc((100vw - 1080px)/2));padding-right:20px}
+  .reel{padding-left:max(20px,calc((100vw - 1100px)/2));padding-right:20px}
   .reel figure{flex-basis:440px}
   .entries{grid-template-columns:repeat(3,1fr)}
-  .contacts dl{grid-template-columns:repeat(3,1fr);gap:28px}
-  .contacts dl>div{padding-right:10px}
+  .contacts dl{grid-template-columns:repeat(3,1fr);gap:0 32px}
   .routes{grid-template-columns:repeat(4,auto);justify-content:start}
+  .routes .btn{min-width:230px}
 }
-@media (max-width:859px){ .lift-layout{display:contents} .brand span{display:none} }
-@media (max-width:380px){ .pill{font-size:.68rem;padding:6px 10px} }
-@media (max-height:620px){ .lift-card{min-height:150px;padding:12px 14px} }
+@media (max-width:859px){ .brand span{display:none} }
+@media (max-width:380px){ .live{font-size:.62rem} .node-head .m{font-size:.68rem} }
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .js .rise{opacity:1;transform:none}
-  .lift{height:auto}
-  .lift-stick{position:static;height:auto;padding:22px 0 40px}
-  .lift-scene svg{height:auto}
 }
 </style>
 </head>
@@ -304,13 +292,13 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Автоцех — наверх">
-      <img src="img/logo.webp" alt="Логотип автосервиса «Автоцех»: автомобиль и гаечные ключи на жёлтом дорожном знаке" width="46" height="46">
+      <img src="img/logo.webp" alt="Логотип автосервиса «Автоцех»: автомобиль и гаечные ключи на жёлтом дорожном знаке" width="44" height="44">
       <span>Автоцех</span>
     </a>
     <nav class="nav" aria-label="Разделы">
-      <a href="#podemnik">Подъёмник</a><a href="#zakaz">Цены</a><a href="#yama">Фото</a><a href="#zhurnal">Отзывы</a><a href="#kontakty">Контакты</a>
+      <a href="#podemnik">Услуги</a><a href="#zakaz">Заказ-наряд</a><a href="#yama">Цех</a><a href="#zhurnal">Отзывы</a><a href="#kontakty">Контакты</a>
     </nav>
-    <div class="pill" id="status" role="status" aria-live="polite"><i aria-hidden="true"></i><span id="statusText">9:00–22:00</span></div>
+    <div class="live" id="status" role="status" aria-live="polite"><i aria-hidden="true"></i><span id="statusText">9:00–22:00</span></div>
   </div>
 </header>
 
@@ -321,113 +309,53 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="eyebrow">Казань · ул. Меридианная, 26Б</div>
-        <h1>Автосервис <mark>в Казани</mark></h1>
-        <p class="lead">Колодки, ШРУСы, масло, выхлоп, чип-тюнинг. Цены на работы — прямо на странице, ежедневно с 9:00 до 22:00.</p>
+        <div class="eyebrow">Автосервис · Казань</div>
+        <h1>Автосервис<span>в Казани</span></h1>
+        <p class="lead">Колодки, ШРУСы, масло, выхлоп, чип-тюнинг. Цены на работы — на этой странице. Ежедневно с 9:00 до 22:00.</p>
         <div class="cta">
-          <a class="btn" data-wa href="https://wa.me/">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.7 14.9L2 22l5.3-1.3A10 10 0 1 0 12 2z"/></svg>
-            Написать в WhatsApp</a>
-          <a class="btn line" data-tel href="#kontakty">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            Позвонить</a>
+          <a class="btn" data-wa href="https://wa.me/">Написать в WhatsApp <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
+          <a class="btn line" data-tel href="#kontakty">Позвонить <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
         </div>
       </div>
 
-      <div class="dial-wrap">
+      <div class="panel">
+        <div class="panel-top"><span>Часы работы</span><b id="nowTime">Казань</b></div>
         <div class="dial" id="dial" role="img" aria-label="Прибор: работаем ежедневно с 9 до 22 часов">
           <svg viewBox="0 0 320 320" aria-hidden="true">
             <path id="gTrack" class="track"/>
             <path id="gZone" class="zone"/>
             <g id="gTicks"></g>
             <g class="needle">
-              <path d="M160 52 L163.5 160 L160 178 L156.5 160 Z" fill="#0c0c0d"/>
+              <path d="M160 180V46" stroke="#ffee05" stroke-width="2" fill="none"/>
             </g>
-            <circle cx="160" cy="160" r="12" fill="#0c0c0d"/>
-            <circle cx="160" cy="160" r="4" fill="#ffee05"/>
+            <circle cx="160" cy="160" r="6" fill="#0a0a0a" stroke="#ffee05" stroke-width="2"/>
           </svg>
           <div class="read"><b>9–22</b><span>ЕЖЕДНЕВНО</span></div>
         </div>
       </div>
     </div>
 
-    <div class="facts">
-      <div><b>4,8</b><span>рейтинг в 2ГИС, 224&nbsp;отзыва</span></div>
-      <div><b>9–22</b><span>ежедневно, без выходных</span></div>
-      <div><b>от&nbsp;1&nbsp;000&nbsp;₽</b><span>замена масла в двигателе</span></div>
-    </div>
+    <dl class="specs">
+      <div><dt>Адрес</dt><dd>Меридианная, 26Б<small>Казань</small></dd></div>
+      <div><dt>Часы работы</dt><dd>9:00–22:00<small>ежедневно</small></dd></div>
+      <div><dt>Рейтинг в 2ГИС</dt><dd>4,8<small>224 отзыва</small></dd></div>
+      <div><dt>Цены</dt><dd>от&nbsp;1&nbsp;000&nbsp;₽<small>работа, запчасти отдельно</small></dd></div>
+    </dl>
   </div>
 </section>
 
 <!-- ═════════ 2. ПОДЪЁМНИК ═════════ -->
 <section class="lift dark" id="podemnik" aria-labelledby="h-lift">
-  <div class="lift-stick">
-    <div class="wrap lift-head">
-      <div>
-        <div class="eyebrow">01 — Осмотр</div>
-        <h2 id="h-lift">Подъёмник</h2>
-      </div>
-      <div class="lift-meter" aria-hidden="true">ПОДЪЁМ<b id="liftPct">0%</b></div>
+  <div class="wrap lift-grid">
+    <div class="lift-intro rise">
+      <div class="eyebrow">Услуги</div>
+      <h2 id="h-lift">Подъёмник</h2>
+      <p class="lead">Выберите узел автомобиля — платформа поднимется к нему и покажет работы и цены.</p>
     </div>
-    <div class="wrap lift-layout">
-      <div class="lift-scene">
-        <svg viewBox="0 -80 400 348" role="group" aria-label="Шесть узлов автомобиля на подъёмнике: нажмите на узел, чтобы увидеть цены">
-          <path class="floor" d="M0 232H400"/>
-          <rect class="post" x="14" y="-72" width="14" height="304" rx="2"/>
-          <rect class="post" x="372" y="-72" width="14" height="304" rx="2"/>
-          <g id="liftRig">
-            <rect x="10" y="224" width="380" height="8" rx="2" fill="#fff"/>
-            <rect x="10" y="224" width="26" height="8" rx="2" fill="#ffee05"/><rect x="364" y="224" width="26" height="8" rx="2" fill="#ffee05"/>
-            <g class="spot tile" data-k="engine" role="button" tabindex="0" aria-label="Двигатель" transform="translate(36 38)">
-              <rect class="bg" width="100" height="84" rx="14"/>
-              <g class="ic" transform="translate(33 8)"><path d="M7 31V6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v25"/><rect x="11" y="10" width="12" height="7" rx="1.5"/><path d="M17 17v14"/></g>
-              <text class="lbl" x="50" y="60">ДВИГАТЕЛЬ</text>
-              <text class="pr" x="50" y="74" data-min="engine"></text>
-              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">1</text>
-            </g>
-            <g class="spot tile" data-k="gearbox" role="button" tabindex="0" aria-label="Кпп" transform="translate(150 38)">
-              <rect class="bg" width="100" height="84" rx="14"/>
-              <g class="ic" transform="translate(33 8)"><circle cx="17" cy="17" r="9"/><circle cx="17" cy="17" r="3.5"/><path d="M17 2v5M17 27v5M2 17h5M27 17h5M6.4 6.4l3.5 3.5M24.1 24.1l3.5 3.5M6.4 27.6l3.5-3.5M24.1 9.9l3.5-3.5"/></g>
-              <text class="lbl" x="50" y="60">КПП</text>
-              <text class="pr" x="50" y="74" data-min="gearbox"></text>
-              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">2</text>
-            </g>
-            <g class="spot tile" data-k="brakes" role="button" tabindex="0" aria-label="Тормоза" transform="translate(264 38)">
-              <rect class="bg" width="100" height="84" rx="14"/>
-              <g class="ic" transform="translate(33 8)"><circle cx="17" cy="17" r="14"/><circle cx="17" cy="17" r="4.5"/><circle cx="27" cy="17" r="1.2"/><circle cx="22" cy="25.7" r="1.2"/><circle cx="12" cy="25.7" r="1.2"/><circle cx="7" cy="17" r="1.2"/><circle cx="12" cy="8.3" r="1.2"/><circle cx="22" cy="8.3" r="1.2"/><path d="M30.5 6.5A17 17 0 0 1 30.5 27.5"/></g>
-              <text class="lbl" x="50" y="60">ТОРМОЗА</text>
-              <text class="pr" x="50" y="74" data-min="brakes"></text>
-              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">3</text>
-            </g>
-            <g class="spot tile" data-k="chassis" role="button" tabindex="0" aria-label="Ходовая" transform="translate(36 132)">
-              <rect class="bg" width="100" height="84" rx="14"/>
-              <g class="ic" transform="translate(33 8)"><path d="M12 2h10M17 2v6M10 9l14 4-14 4 14 4-14 4M17 25v6"/><circle cx="17" cy="32" r="1.6"/></g>
-              <text class="lbl" x="50" y="60">ХОДОВАЯ</text>
-              <text class="pr" x="50" y="74" data-min="chassis"></text>
-              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">4</text>
-            </g>
-            <g class="spot tile" data-k="exhaust" role="button" tabindex="0" aria-label="Выхлоп" transform="translate(150 132)">
-              <rect class="bg" width="100" height="84" rx="14"/>
-              <g class="ic" transform="translate(33 8)"><rect x="10" y="11" width="18" height="12" rx="6"/><path d="M1 17h9M28 17h5M16 11v12M22 11v12M30 11c2-2 2-4 0-6M26 9c1.5-1.5 1.5-3 0-4.5"/></g>
-              <text class="lbl" x="50" y="60">ВЫХЛОП</text>
-              <text class="pr" x="50" y="74" data-min="exhaust"></text>
-              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">5</text>
-            </g>
-            <g class="spot tile" data-k="chip" role="button" tabindex="0" aria-label="Прошивка" transform="translate(264 132)">
-              <rect class="bg" width="100" height="84" rx="14"/>
-              <g class="ic" transform="translate(33 8)"><rect x="9" y="9" width="16" height="16" rx="2"/><rect x="14" y="14" width="6" height="6" rx="1"/><path d="M13 9V3M17 9V3M21 9V3M13 25v6M17 25v6M21 25v6M9 13H3M9 17H3M9 21H3M25 13h6M25 17h6M25 21h6"/></g>
-              <text class="lbl" x="50" y="60">ПРОШИВКА</text>
-              <text class="pr" x="50" y="74" data-min="chip"></text>
-              <circle class="nb" cx="13" cy="13" r="8"/><text class="nt" x="13" y="13.5">6</text>
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="lift-card" id="liftCard" aria-live="polite">
-        <div class="eyebrow">Узлы автомобиля</div>
-        <p class="hint">Нажмите на узел на подъёмнике или выберите из списка:</p>
-        <div class="chips" id="liftChips"></div>
-      </div>
+    <div class="nodes-wrap" id="nodesWrap">
+      <span class="rail" aria-hidden="true"></span>
+      <span class="carriage" id="carriage" aria-hidden="true"></span>
+      <ol class="nodes" id="nodes"></ol>
     </div>
   </div>
 </section>
@@ -436,7 +364,7 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
 <section class="order" id="zakaz" aria-labelledby="h-order">
   <div class="wrap order-grid">
     <div class="order-info rise">
-      <div class="eyebrow">02 — Цены</div>
+      <div class="eyebrow">Прайс</div>
       <h2 id="h-order">Заказ-наряд</h2>
       <p class="lead">Отметьте нужные работы — бланк посчитает сумму и соберёт сообщение для WhatsApp. Все цены «от», за работу. Запчасти и материалы оплачиваются отдельно.</p>
       <div class="note-ask">Нет нужной работы в списке или другая модель автомобиля? <a data-wa href="https://wa.me/" target="_blank" rel="noopener">Напишите нам в WhatsApp</a> — уточним стоимость.</div>
@@ -453,7 +381,7 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
         <div><small>Итого</small><b id="total">—</b></div>
         <small>работа без запчастей<br>и материалов</small>
       </div>
-      <a class="btn" id="sendOrder" href="https://wa.me/" target="_blank" rel="noopener">Отправить заказ в WhatsApp</a>
+      <a class="btn" id="sendOrder" href="https://wa.me/" target="_blank" rel="noopener">Отправить заказ в WhatsApp <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
       <p class="after" id="orderNote">Выберите работы — они попадут в текст сообщения.</p>
     </form>
   </div>
@@ -463,7 +391,7 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
 <section class="pit" id="yama" aria-labelledby="h-pit">
   <div class="wrap pit-head rise">
     <div>
-      <div class="eyebrow">03 — Цех</div>
+      <div class="eyebrow">Цех</div>
       <h2 id="h-pit">Смотровая яма</h2>
     </div>
     <div class="arrows">
@@ -486,23 +414,23 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
 <section class="log" id="zhurnal" aria-labelledby="h-log">
   <div class="wrap">
     <div class="rise">
-      <div class="eyebrow">04 — Отзывы</div>
+      <div class="eyebrow">Отзывы</div>
       <h2 id="h-log">Бортовой журнал</h2>
     </div>
     <div class="rating rise">
       <div class="n">4,8</div>
       <div>
-        <span class="stars" role="img" aria-label="Рейтинг 4,8 из 5">★★★★★</span>
+        <div class="score" role="img" aria-label="Рейтинг 4,8 из 5"><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i class="p"></i></div>
         <p>Рейтинг в 2ГИС · 224 отзыва</p>
       </div>
     </div>
     <div class="entries">
       <!-- ОТЗЫВ 1: замените текст в <p> и подпись в <footer> на реальный отзыв -->
-      <article class="entry rise"><header>Запись № 1</header><p>[ВСТАВЛЮ САМ]</p><footer>— [имя, источник]</footer></article>
+      <article class="entry rise"><header>Запись 01</header><p>[ВСТАВЛЮ САМ]</p><footer>— [имя, источник]</footer></article>
       <!-- ОТЗЫВ 2 -->
-      <article class="entry rise"><header>Запись № 2</header><p>[ВСТАВЛЮ САМ]</p><footer>— [имя, источник]</footer></article>
+      <article class="entry rise"><header>Запись 02</header><p>[ВСТАВЛЮ САМ]</p><footer>— [имя, источник]</footer></article>
       <!-- ОТЗЫВ 3 -->
-      <article class="entry rise"><header>Запись № 3</header><p>[ВСТАВЛЮ САМ]</p><footer>— [имя, источник]</footer></article>
+      <article class="entry rise"><header>Запись 03</header><p>[ВСТАВЛЮ САМ]</p><footer>— [имя, источник]</footer></article>
     </div>
   </div>
 </section>
@@ -510,7 +438,7 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
 <!-- ═════════ 6. КОНТАКТЫ ═════════ -->
 <section class="contacts dark" id="kontakty" aria-labelledby="h-contacts">
   <div class="wrap">
-    <div class="eyebrow">05 — Контакты</div>
+    <div class="eyebrow">Контакты</div>
     <h2 id="h-contacts">Заезжайте</h2>
     <dl class="rise">
       <div><dt>Адрес</dt><dd>Казань,<br>ул. Меридианная, 26Б</dd></div>
@@ -518,10 +446,10 @@ h2{font-size:clamp(2rem,8.5vw,3.4rem)}
       <div><dt>Телефон</dt><dd><a data-tel data-tel-text href="https://wa.me/">Уточняйте в WhatsApp</a></dd></div>
     </dl>
     <div class="routes">
-      <a class="btn" target="_blank" rel="noopener" href="https://yandex.ru/maps/?rtext=~%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B5%D1%80%D0%B8%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%2C%2026%D0%91&rtt=auto">Маршрут в Яндекс Картах</a>
-      <a class="btn" target="_blank" rel="noopener" href="https://2gis.ru/kazan/search/%D0%9C%D0%B5%D1%80%D0%B8%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%2026%D0%91">Маршрут в 2ГИС</a>
-      <a class="btn line" data-wa href="https://wa.me/">WhatsApp</a>
-      <a class="btn line" data-tel href="#kontakty">Позвонить</a>
+      <a class="btn" target="_blank" rel="noopener" href="https://yandex.ru/maps/?rtext=~%D0%9A%D0%B0%D0%B7%D0%B0%D0%BD%D1%8C%2C%20%D1%83%D0%BB.%20%D0%9C%D0%B5%D1%80%D0%B8%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%2C%2026%D0%91&rtt=auto">Маршрут в Яндекс Картах <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
+      <a class="btn" target="_blank" rel="noopener" href="https://2gis.ru/kazan/search/%D0%9C%D0%B5%D1%80%D0%B8%D0%B4%D0%B8%D0%B0%D0%BD%D0%BD%D0%B0%D1%8F%2026%D0%91">Маршрут в 2ГИС <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
+      <a class="btn line" data-wa href="https://wa.me/">WhatsApp <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
+      <a class="btn line" data-tel href="#kontakty">Позвонить <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg></a>
     </div>
     <div class="end">© Автоцех · Казань, ул. Меридианная, 26Б<br>Цены на сайте — «от», за работу; запчасти и материалы отдельно. Точную стоимость уточняйте.</div>
   </div>
@@ -552,6 +480,7 @@ var isSet = function(v){return !!v && v.charAt(0)!=='['};
 var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 var rub = function(n){return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽'};
 var plain = function(s){return s.replace(/ /g,' ')};
+var ARROW = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h13M11 5l5 5-5 5"/></svg>';
 
 /* ── ссылки связи ── */
 function waLink(text){
@@ -572,14 +501,14 @@ var gaugePt = (function(){
   var f=function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)};
   var out='', labels={0:1,6:1,9:1,12:1,18:1,22:1,24:1};
   for(var h=0;h<=24;h++){
-    var big=h%3===0, on=h>=9&&h<=22, a=pt(h,126), b=pt(h,big?112:119);
+    var big=h%3===0, on=h>=9&&h<=22, a=pt(h,130), b=pt(h,big?114:122);
     out+='<line class="tk'+(big?' big':'')+(on?' on':'')+'" x1="'+a[0].toFixed(1)+'" y1="'+a[1].toFixed(1)+'" x2="'+b[0].toFixed(1)+'" y2="'+b[1].toFixed(1)+'"/>';
-    if(labels[h]){var n=pt(h,94);out+='<text class="lb'+((h===9||h===22)?' on':'')+'" x="'+n[0].toFixed(1)+'" y="'+n[1].toFixed(1)+'">'+h+'</text>';}
+    if(labels[h]){var n=pt(h,98);out+='<text class="lb'+((h===9||h===22)?' on':'')+'" x="'+n[0].toFixed(1)+'" y="'+n[1].toFixed(1)+'">'+h+'</text>';}
   }
-  out+='<circle id="gNow" r="5" fill="#fff" stroke="#0c0c0d" stroke-width="2.5" cx="160" cy="14"/>';
+  out+='<circle id="gNow" r="4.5" fill="#fff" cx="160" cy="16"/>';
   $('#gTicks').innerHTML=out;
-  $('#gTrack').setAttribute('d','M'+f(pt(0,142))+' A142 142 0 1 1 '+f(pt(24,142)));
-  $('#gZone').setAttribute('d','M'+f(pt(9,142))+' A142 142 0 0 1 '+f(pt(22,142)));
+  $('#gTrack').setAttribute('d','M'+f(pt(0,144))+' A144 144 0 1 1 '+f(pt(24,144)));
+  $('#gZone').setAttribute('d','M'+f(pt(9,144))+' A144 144 0 0 1 '+f(pt(22,144)));
   if(!reduce) $('#dial').classList.add('run');
   return pt;
 })();
@@ -594,15 +523,15 @@ function tick(){
   var p=kazanNow(), h=+p.hour, m=+p.minute, open=h>=9&&h<22;
   var box=$('#status'); box.classList.toggle('open',open); box.classList.toggle('closed',!open);
   $('#statusText').textContent = open ? 'Открыто до 22:00' : 'Закрыто · с 9:00';
-  box.title = 'Сейчас в Казани '+p.hour+':'+p.minute;
-  var n=gaugePt(h+m/60,142), dot=$('#gNow');
+  $('#nowTime').textContent = 'Казань '+p.hour+':'+p.minute;
+  var n=gaugePt(h+m/60,144), dot=$('#gNow');
   dot.setAttribute('cx',n[0].toFixed(1)); dot.setAttribute('cy',n[1].toFixed(1));
-  dot.setAttribute('fill',open?'#1f9d4a':'#d3402b');
+  dot.setAttribute('fill',open?'#3ddc6b':'#ff5b3d');
   $('#orderDate').textContent = p.day+'.'+p.month+'.'+p.year;
 }
 tick(); setInterval(tick,20000);
 
-/* ── услуги (единый источник для подъёмника и бланка) ── */
+/* ── услуги (единый источник для списка узлов и бланка) ── */
 var SERVICES = [
   {id:'pads', name:'Замена передних колодок',       vaz:1000, foreign:1500},
   {id:'cv',   name:'Замена наружного ШРУСа',        vaz:2000, foreign:2500},
@@ -647,53 +576,53 @@ function recalc(){
 }
 form.addEventListener('change',recalc); recalc();
 
-/* ── подъёмник: карточки ── */
-var card=$('#liftCard'), cardHome=card.innerHTML;
-function showSpot(k){
-  var sp=SPOTS[k]; if(!sp) return;
-  $$('.spot').forEach(function(g){g.classList.toggle('on',g.dataset.k===k)});
-  var li=sp.items.map(function(id){var s=byId[id];
-    return s.vaz ? '<li><span>'+s.name+' — ВАЗ</span><b>от '+rub(s.vaz)+'</b></li><li><span>'+s.name+' — иномарки</span><b>от '+rub(s.foreign)+'</b></li>'
-                 : '<li><span>'+s.name+'</span><b>от '+rub(s.price)+'</b></li>';}).join('');
-  card.innerHTML='<div class="eyebrow">Узел '+sp.n+' из 6</div><h3>'+sp.title+'</h3><ul>'+li+'</ul>'+
-    '<div class="row"><button type="button" class="btn sm" data-add="'+k+'">Добавить в заказ-наряд</button><button type="button" class="lnk" data-back>Все точки</button></div>';
-}
-function fillChips(){
-  $('#liftChips').innerHTML=Object.keys(SPOTS).map(function(k){return '<button type="button" data-spot="'+k+'">'+SPOTS[k].n+' · '+SPOTS[k].title+'</button>'}).join('');
-}
-fillChips();
-$$('[data-min]').forEach(function(el){
-  var prices=[]; SPOTS[el.dataset.min].items.forEach(function(id){var x=byId[id]; prices.push(x.price||Math.min(x.vaz,x.foreign));});
-  el.textContent='от '+rub(Math.min.apply(null,prices));
-});
-card.addEventListener('click',function(e){
-  var t=e.target.closest('button'); if(!t) return;
-  if(t.dataset.spot) showSpot(t.dataset.spot);
-  else if(t.hasAttribute('data-back')){ card.innerHTML=cardHome; fillChips(); $$('.spot').forEach(function(g){g.classList.remove('on')}); }
-  else if(t.dataset.add){
-    SPOTS[t.dataset.add].items.forEach(function(id){$('input[value="'+id+'"]',rows).checked=true});
-    recalc(); $('#zakaz').scrollIntoView({behavior:reduce?'auto':'smooth'});
-  }
-});
-$$('.spot').forEach(function(g){
-  g.addEventListener('click',function(){showSpot(g.dataset.k)});
-  g.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();showSpot(g.dataset.k);} });
-});
+/* ── подъёмник: список узлов с платформой, которая едет к выбранному ── */
+var nodes=$('#nodes'), carriage=$('#carriage'), currentNode=null;
+nodes.innerHTML = Object.keys(SPOTS).map(function(k){
+  var sp=SPOTS[k], prices=[];
+  var lines = sp.items.map(function(id){
+    var s=byId[id];
+    if(s.vaz){ prices.push(Math.min(s.vaz,s.foreign));
+      return '<li><span>'+s.name+' — ВАЗ</span><b>от '+rub(s.vaz)+'</b></li><li><span>'+s.name+' — иномарки</span><b>от '+rub(s.foreign)+'</b></li>'; }
+    prices.push(s.price);
+    return '<li><span>'+s.name+'</span><b>от '+rub(s.price)+'</b></li>';
+  }).join('');
+  return '<li class="node" data-k="'+k+'">'+
+    '<button type="button" class="node-head" id="nh-'+k+'" aria-expanded="false" aria-controls="np-'+k+'">'+
+      '<span class="n">0'+sp.n+'</span><span class="t">'+sp.title+'</span><span class="m">от '+rub(Math.min.apply(null,prices))+'</span><span class="pl" aria-hidden="true"></span></button>'+
+    '<div class="node-body" id="np-'+k+'" role="region" aria-labelledby="nh-'+k+'" hidden><ul>'+lines+'</ul>'+
+      '<button type="button" class="btn sm" data-add="'+k+'">В заказ-наряд '+ARROW+'</button></div></li>';
+}).join('');
 
-/* ── подъёмник: подъём при прокрутке ── */
-(function(){
-  var sec=$('#podemnik'), rig=$('#liftRig'), pct=$('#liftPct'), MAX=86, queued=false;
-  function set(p){ rig.setAttribute('transform','translate(0 '+(-MAX*p).toFixed(1)+')'); pct.textContent=Math.round(p*100)+'%'; }
-  if(reduce){ set(1); return; }
-  function upd(){
-    queued=false;
-    var r=sec.getBoundingClientRect(), span=r.height-innerHeight;
-    var p=Math.min(1,Math.max(0,-r.top/(span*0.6)));
-    set(p*p*(3-2*p));
+function moveCarriage(){
+  if(!currentNode){ carriage.style.opacity=0; return; }
+  carriage.style.opacity=1;
+  carriage.style.height=currentNode.offsetHeight+'px';
+  carriage.style.transform='translateY('+currentNode.offsetTop+'px)';
+}
+function openNode(k){
+  $$('.node',nodes).forEach(function(li){
+    var on = li.dataset.k===k;
+    li.classList.toggle('open',on);
+    $('.node-head',li).setAttribute('aria-expanded',on);
+    $('.node-body',li).hidden=!on;
+    if(on) currentNode=li;
+  });
+  moveCarriage();
+}
+nodes.addEventListener('click',function(e){
+  var add=e.target.closest('[data-add]');
+  if(add){
+    SPOTS[add.dataset.add].items.forEach(function(id){$('input[value="'+id+'"]',rows).checked=true});
+    recalc(); $('#zakaz').scrollIntoView({behavior:reduce?'auto':'smooth'}); return;
   }
-  addEventListener('scroll',function(){ if(!queued){queued=true;requestAnimationFrame(upd);} },{passive:true});
-  addEventListener('resize',upd); upd();
-})();
+  var head=e.target.closest('.node-head');
+  if(head) openNode(head.parentNode.dataset.k);
+});
+openNode('engine');
+addEventListener('resize',moveCarriage);
+addEventListener('load',moveCarriage);
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(moveCarriage);
 
 /* ── лента фото: стрелки ── */
 (function(){
